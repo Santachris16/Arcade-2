@@ -1,9 +1,11 @@
+// Global counters
+let totalGamesPlayed = 0;
+let totalWins = 0;
+
 // Bear-Ninja-Hunter Game
 function playBearNinjaHunter() {
     const gameChoices = ["bear", "ninja", "hunter"];
-    let totalGames = 0;
     let playerWins = 0;
-    let computerWins = 0;
     let playerName = prompt("Welcome to Bear-Ninja-Hunter! Please enter your name:");
 
     if (!playerName) {
@@ -38,24 +40,25 @@ function playBearNinjaHunter() {
         ) {
             resultMessage += "Congratulations, you win!";
             playerWins++;
+            totalWins++;
         } else {
             resultMessage += "Sorry, the computer wins this time.";
-            computerWins++;
         }
 
-        totalGames++;
+        totalGamesPlayed++;
         alert(resultMessage);
 
         let playAgain = prompt(`${playerName}, would you like to keep playing this game? y/n`);
         keepPlaying = playAgain && playAgain.toLowerCase() === "y";
     }
 
-    alert(`Game over! You played ${totalGames} game(s).\nPlayer wins: ${playerWins}\nComputer wins: ${computerWins}`);
-    document.getElementById("gameResult").textContent = `Session Summary: ${totalGames} game(s) played. Player wins: ${playerWins}, Computer wins: ${computerWins}.`;
+    alert(`Game over! Thank you for playing Bear-Ninja-Hunter.`);
+    showStatistics();
 }
 
 // Guessing Game
 const playGuessingGame = function () {
+    let randomNumber, guess, attempts;
     let playerName = prompt("Welcome to the Guessing Game! Please enter your name:");
     if (!playerName) {
         alert("No name entered. Game canceled.");
@@ -66,9 +69,8 @@ const playGuessingGame = function () {
     let playAgain = true;
 
     while (playAgain) {
-        let randomNumber = Math.floor(Math.random() * 10) + 1;
-        let guess;
-        let attempts = 0;
+        randomNumber = Math.floor(Math.random() * 10) + 1;
+        attempts = 0;
 
         while (true) {
             guess = prompt(`${playerName}, enter your guess (1-10):`);
@@ -89,17 +91,19 @@ const playGuessingGame = function () {
                 alert("Your guess is too low, try again.");
             } else {
                 alert(`Correct! You guessed it in ${attempts} attempts.`);
+                totalWins++;
                 break;
             }
         }
 
+        totalGamesPlayed++;
         if (playAgain) {
             let response = prompt(`${playerName}, would you like to keep playing this game? y/n`);
             playAgain = response && response.toLowerCase() === "y";
         }
     }
 
-    document.getElementById("gameResult").textContent = `${playerName} enjoyed playing the Guessing Game!`;
+    showStatistics();
 };
 
 // Magic 8 Ball Game
@@ -137,8 +141,25 @@ const playMagic8Ball = () => {
 
         const playAgain = prompt(`${playerName}, would you like to keep playing this game? y/n`);
         keepPlaying = playAgain && playAgain.toLowerCase() === "y";
+        totalGamesPlayed++;
+        totalWins++; // Assume a "win" for asking a valid question.
     }
 
-    alert(`Thanks for playing Magic 8 Ball, ${playerName}! Farewell!`);
-    document.getElementById("gameResult").textContent = `${playerName} enjoyed playing Magic 8 Ball!`;
+    showStatistics();
 };
+
+// Show Playing Session Statistics
+function showStatistics() {
+    const tableBody = document.querySelector("#statsTable tbody");
+    const winPercentage = totalGamesPlayed ? ((totalWins / totalGamesPlayed) * 100).toFixed(2) : 0;
+
+    tableBody.innerHTML = `
+        <tr>
+            <td>${totalGamesPlayed}</td>
+            <td>${totalWins}</td>
+            <td>${winPercentage}%</td>
+        </tr>
+    `;
+
+    document.getElementById("farewell").classList.remove("hidden");
+}
