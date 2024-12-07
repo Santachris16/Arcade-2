@@ -1,0 +1,33 @@
+/* Styling for the Arcade */
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: #333;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#gameResult {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: blue;
+}
