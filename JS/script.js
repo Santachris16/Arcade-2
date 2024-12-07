@@ -2,7 +2,7 @@
 let totalGamesPlayed = 0;
 let totalWins = 0;
 
-// Bear-Ninja-Hunter Game
+// Bear,Ninja,Hunter Game
 function playBearNinjaHunter() {
     const gameChoices = ["bear", "ninja", "hunter"];
     let playerWins = 0;
@@ -106,7 +106,7 @@ const playGuessingGame = function () {
     showStatistics();
 };
 
-// Magic 8 Ball Game
+// Magic 8 Ball
 const playMagic8Ball = () => {
     const responses = [
         "Yes, definitely!",
