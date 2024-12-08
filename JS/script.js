@@ -6,7 +6,7 @@ let totalWins = 0;
 function playBearNinjaHunter() {
     const gameChoices = ["bear", "ninja", "hunter"];
     let playerWins = 0;
-    let playerName = prompt("Welcome to Bear-Ninja-Hunter! Please enter your name:");
+    let playerName = prompt("Welcome to Bear, Ninja, Hunter! Please enter your name:");
 
     if (!playerName) {
         alert("No name entered. Game canceled.");
